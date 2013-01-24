@@ -1,4 +1,4 @@
-__version__ = "1.0.9"
+__version__ = "1.0.10"
 
 def check_user_agent(user_agent, requirements):
     import httpagentparser
@@ -30,7 +30,7 @@ def check_user_agent(user_agent, requirements):
     for browser, browser_version in requirements:
         if user_browser == browser.lower():
             if not browser_version:
-                return False
+                return True
             if cmp(parse_version(browser_version), parse_version(user_browser_version)) <= 0:
                 return True
             else:
