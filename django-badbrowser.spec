@@ -5,8 +5,8 @@
 %endif
 
 
-Name:             python-zabbix-api
-Version:          1.0.9
+Name:             django-badbrowser
+Version:          1.0.10
 Release:          1
 Summary:          Django Badbrowser
 License:          MIT
