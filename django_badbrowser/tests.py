@@ -247,7 +247,7 @@ class CheckUserAgentTest(TestCase):
     
     def test_user_agents_ff_3_1_b_3_bad(self):
         requirements = (("FIREFOX", "3.1"),) # "3.1 beta 4" will not work here
-        
+
         for user_agent in self._get_ua_strings("ff3.1b3"):
             self.assertFalse(check_user_agent(user_agent, requirements), "Failed for ua '%s'" % user_agent)
     

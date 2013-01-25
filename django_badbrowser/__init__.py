@@ -1,4 +1,4 @@
-__version__ = "1.0.10"
+__version__ = "1.0.11"
 
 def check_user_agent(user_agent, requirements):
     import httpagentparser
@@ -26,7 +26,15 @@ def check_user_agent(user_agent, requirements):
     
     user_browser = parsed["browser"]["name"].lower()
     user_browser_version = parsed["browser"]["version"]
-    
+    import logging
+    logger = logging.getLogger('browser_detection')
+    hdlr = logging.FileHandler('/var/www/env/exante-stage/log/browser_detection.log')
+    formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+    hdlr.setFormatter(formatter)
+    logger.addHandler(hdlr)
+    logger.setLevel(logging.WARNING)
+    logger.info(user_browser_version)
+    logger.info(user_agent)
     for browser, browser_version in requirements:
         if user_browser == browser.lower():
             if not browser_version:
