@@ -1,4 +1,6 @@
 __version__ = "1.0.11"
+import os
+from django.conf import settings
 
 def check_user_agent(user_agent, requirements):
     import httpagentparser
@@ -28,7 +30,12 @@ def check_user_agent(user_agent, requirements):
     user_browser_version = parsed["browser"]["version"]
     import logging
     logger = logging.getLogger('browser_detection')
-    hdlr = logging.FileHandler('/var/www/env/exante-stage/log/browser_detection.log')
+    log_path = os.path.join(settings.PROJ_PATH, 'log')
+    try:
+        os.mkdir(log_path, 0744)
+    except OSError:
+        pass
+    hdlr = logging.FileHandler(os.path.join(log_path, 'browser_detection.log'))
     formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
     hdlr.setFormatter(formatter)
     logger.addHandler(hdlr)
